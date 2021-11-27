@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MyCountDown">
+        <attr name="strokeC" format="color"></attr>
+        <attr name="strokeW" format="integer"></attr>
+        <attr name="textSize" format="integer"></attr>
+        <attr name="textColor" format="color"></attr>
+    </declare-styleable>
+</resources>

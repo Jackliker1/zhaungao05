@@ -1,0 +1,40 @@
+<html lang="zh-CN">
+<head>
+    <script>
+            window.onload=function(){
+                var btnTest=document.getElementById("btn_Test");
+                btnTest.addEventListener("click",function(){
+                    alert("我是Test内容");
+                });
+
+                var btnPlus=document.getElementById("btn_Plus");
+                btnPlus.addEventListener("click",function(){
+                    var txtA=document.getElementById("txt_A").value;
+                    var txtB=document.getElementById("txt_B").value;
+                    var result= window.MyAndroid.plus(txtA,txtB);
+                    alert("结果:"+result);
+                });
+            }
+
+            function androidCallJavascript(content){
+                alert(content);
+            }
+
+            function javascriptCallAndroid(){
+                window.MyAndroid.method1();
+            }
+
+
+        </script>
+</head>
+<body>
+<input type="button" value="Test" id="btn_Test"/>
+<input type="button" value="JSCallAndroid" onclick="javascriptCallAndroid()" />
+<div>
+    <input type="text" id="txt_A" />
+    <input type="text" id="txt_B" />
+    <input type="button" id="btn_Plus" />
+</div>
+<a href="zhangsan://test/test?username=zhangsan&pwd=123456">跳转到DeepLinkTargetActivity</a>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html onload="setBanner()">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<div>
+			<img id="back" onclick="goBack()" width="30dp" height="30dp" />
+			<img id="share" width="30dp" height="30dp" align="right" />
+			<img id="more" width="30dp" height="30dp" align="right" />
+		</div>
+		
+		<img id="banner" width="100%" height="260dp" style="margin-top: 15px;" />
+		
+		<div style="margin-top: 30px;">
+			
+			<span><font size="3" color="#FF0000" style="font-weight: 900;">￥</font><font id="price" size="5" color="#FF0000" style="font-weight: 700;">8999.00</font></span>
+			
+		</div>
+		
+		<p>
+			
+			<span><font size="1" style="background: #FF0000; padding: 3px;" color="#FFFFFF">自营</font></span>
+			<font id="title" size="2" style="font-weight: 900;">Apple 2019款 Macbook Pro 13.3【带触控栏】 八代i5 8G 128G RP645显卡 深空灰 苹果笔记本电脑 MUHN2CH/A</font>
+			
+		</p>
+		
+		<p align="center" style=" background: #FF0000; padding-bottom: 10px; padding-top: 10px;">
+			
+			<font color="#FFFFFF" size="2" style="font-weight: 900;">京东超市！一站式囤生活好物</font>
+			
+		</p>
+		
+	</body>
+	
+	<script>
+
+		function settingBanner(content){
+			document.getElementById("banner").src = content;
+		}
+
+		function settingPrice(content){
+			document.getElementById("price").textContent = content;
+		}
+
+		function settingTitle(content){
+			document.getElementById("title").textContent = content;
+		}
+
+		function setBanner(content){
+			document.getElementById("back").src = "data:image/jpeg;base64," + content;
+		}
+
+		function goBack(){
+			MyAndroid.goBack();
+		}
+
+	</script>
+	
+</html>

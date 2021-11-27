@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="ownerClassify"
+            type="com.bawei.classify.view.ClassifyFragment" />
+    </data>
+
+    <LinearLayout
+        android:background="#EEEEEE"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:background="#FFFFFF"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/sf2020_skin_nasa_sidebar_icon_scan_normal"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:tint="#666666">
+            </ImageView>
+
+            <EditText
+                android:textSize="15dp"
+                android:textColor="#666666"
+                android:paddingLeft="15dp"
+                android:hint="跑步背包"
+                android:background="@drawable/background_circle"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_width="290dp"
+                android:layout_height="30dp">
+            </EditText>
+
+            <ImageView
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/sf2020_skin_sidebar_icon_chat"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:tint="#666666">
+            </ImageView>
+
+        </LinearLayout>
+
+        <View
+            android:background="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="10dp">
+        </View>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/classify_recycler"
+                android:divider="@null"
+                android:layout_width="120dp"
+                android:layout_height="match_parent">
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <LinearLayout
+                android:background="#FFFFFF"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:scaleType="centerCrop"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="10dp"
+                    android:background="#FFF"
+                    android:src="@drawable/wallpaper14"
+                    android:layout_width="match_parent"
+                    android:layout_height="130dp">
+                </ImageView>
+
+                <TextView
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:id="@+id/classify_first_tv"
+                    android:text="专场推荐"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/classify_first_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <View
+                    android:layout_marginTop="10dp"
+                    android:background="#EEEEEE"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp">
+                </View>
+
+                <TextView
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:id="@+id/classify_second_tv"
+                    android:text="专场推荐"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/classify_second_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

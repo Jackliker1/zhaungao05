@@ -1,0 +1,10 @@
+rootProject.name = "MyApp"
+include ':app'
+include ':MVVM'
+include ':OKHttp'
+include ':UserCenter'
+include ':Home'
+include ':Classify'
+include ':Discover'
+include ':ShoppingCar'
+include ':Mine'

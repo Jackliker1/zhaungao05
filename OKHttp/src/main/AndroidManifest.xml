@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.bawei.okhttp">
+
+    <application>
+        <meta-data android:name="authCode" android:value="ee1a319b15c1e416a11710c18218d12c15315a16919111b1"></meta-data>
+    </application>
+
+</manifest>
