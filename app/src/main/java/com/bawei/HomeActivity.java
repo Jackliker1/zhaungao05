@@ -18,7 +18,7 @@ import com.bawei.home.view.SearchActivity;
 import com.bawei.mine.MineFragment;
 import com.bawei.mvvm.view.BaseActivity;
 import com.bawei.myapp.R;
-import com.bawei.shoppingcar.ShoppingCarFragment;
+import com.bawei.shoppingcar.view.ShoppingCarFragment;
 
 import java.util.ArrayList;
 import java.util.List;
