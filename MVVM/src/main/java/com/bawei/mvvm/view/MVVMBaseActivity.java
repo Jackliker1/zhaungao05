@@ -23,7 +23,6 @@ public abstract class MVVMBaseActivity<VM extends BaseViewModel,Binding extends 
         mBinding = DataBindingUtil.setContentView(this,getLayoutId());
         mBinding.setLifecycleOwner(this);
         mViewModel = createViewModel();
-        initEvn();
         super.onCreate(savedInstanceState);
         prepareSetValues(mMap);
         setValues(mBinding,mMap);

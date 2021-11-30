@@ -103,6 +103,7 @@
             </TextView>
 
             <Button
+                android:onClick="@{(view)->ownerShoppingCar.toPay(view)}"
                 android:layout_marginRight="15dp"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/background_circle"

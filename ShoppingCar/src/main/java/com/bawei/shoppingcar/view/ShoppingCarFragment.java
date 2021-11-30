@@ -1,8 +1,10 @@
 package com.bawei.shoppingcar.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import com.bawei.okhttp.entity.BaseTokenEntity;
 import com.bawei.shoppingcar.BR;
 import com.bawei.shoppingcar.R;
 import com.bawei.shoppingcar.adapter.MyRecommendAdapter;
+import com.bawei.shoppingcar.database.MySqlTable;
 import com.bawei.shoppingcar.databinding.FragmentShoppingcarBinding;
 import com.bawei.shoppingcar.entity.RecommendEntity;
 import com.bawei.shoppingcar.entity.ShoppingCarEntity;
@@ -116,9 +119,27 @@ public class ShoppingCarFragment extends MVVMBaseFragment<ShoppingCarViewModel, 
                 MyRecommendAdapter myRecommendAdapter = new MyRecommendAdapter(getContext(), listBaseTokenEntity.getData());
                 shoppingRecommendRecycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
                 shoppingRecommendRecycler.setAdapter(myRecommendAdapter);
-
             }
         });
+
+    }
+
+    public void toPay(View view){
+
+        MySqlTable mySqlTable = new MySqlTable(getContext(),"SqlTable.db",null,1);
+        SQLiteDatabase db = mySqlTable.getReadableDatabase();
+
+        for (int i = 0; i < list.size(); i++) {
+            ShoppingCarEntity entity = list.get(i);
+            if(entity.isCheck()){
+                long currentTime = System.currentTimeMillis();
+                String time = String.valueOf(currentTime);
+                db.execSQL("insert into orderTable2 values(?,?,?,?,?,?,?)",new Object[]{null,time,null,entity.getImageUrl(),entity.getPrice(),entity.getNum(),entity.getSumPrice()});
+            }
+        }
+
+        Intent intent = new Intent(getContext(),PaymentActivity.class);
+        startActivity(intent);
 
     }
 
@@ -179,7 +200,7 @@ public class ShoppingCarFragment extends MVVMBaseFragment<ShoppingCarViewModel, 
             holder.item_shopping_subtract.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (shoppingCarEntity.getNum() == 0) {
+                    if (shoppingCarEntity.getNum() == 1) {
                         Toast.makeText(mContext, "购物车商品最少为一个", Toast.LENGTH_SHORT).show();
                     } else {
                         shoppingCarEntity.setNum(shoppingCarEntity.getNum() - 1);
