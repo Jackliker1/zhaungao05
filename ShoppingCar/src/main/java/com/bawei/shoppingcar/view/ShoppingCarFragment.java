@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,13 +41,14 @@ public class ShoppingCarFragment extends MVVMBaseFragment<ShoppingCarViewModel, 
     private int page = 1;
     private int pageSize = 8;
     private int index = 0;
+    private SQLiteDatabase db;
     private RecyclerView shoppingRecycler;
     private List<ShoppingCarEntity> list = new ArrayList<>();
     private CheckBox shoppingCheckAll;
     private TextView shoppingSumPrice;
-    private TextView shoppingDelete;
     private Button shoppingCommit;
     private RecyclerView shoppingRecommendRecycler;
+    private MyShoppingCarAdapter myShoppingCarAdapter;
 
     @Override
     protected void prepareValues(HashMap<Integer, Object> mMap) {
@@ -74,25 +74,6 @@ public class ShoppingCarFragment extends MVVMBaseFragment<ShoppingCarViewModel, 
     protected void loadData() {
 
         initView();
-
-        shoppingRecycler = (RecyclerView) findViewById(R.id.shopping_recycler);
-
-        MySql mySql = new MySql(getContext(), "ShopCar.db", null, 1);
-        SQLiteDatabase db = mySql.getReadableDatabase();
-
-        Cursor goods = db.query("goods", null, null, null, null, null, null);
-        while (goods.moveToNext()) {
-            String title = goods.getString(goods.getColumnIndex("title"));
-            String imageUrl = goods.getString(goods.getColumnIndex("pic"));
-            float price = goods.getFloat(goods.getColumnIndex("price"));
-            ShoppingCarEntity shoppingCarEntity = new ShoppingCarEntity(title, imageUrl, 1, price);
-            list.add(shoppingCarEntity);
-        }
-
-        MyShoppingCarAdapter myShoppingCarAdapter = new MyShoppingCarAdapter(getContext(), list);
-
-        shoppingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        shoppingRecycler.setAdapter(myShoppingCarAdapter);
 
         shoppingCheckAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +105,37 @@ public class ShoppingCarFragment extends MVVMBaseFragment<ShoppingCarViewModel, 
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        shoppingRecycler = (RecyclerView) findViewById(R.id.shopping_recycler);
+        setData();
+    }
+
+    private void setData() {
+
+        if(myShoppingCarAdapter != null){
+            myShoppingCarAdapter.notifyDataSetChanged();
+        }
+
+        MySql mySql = new MySql(getContext(), "ShopCar.db", null, 1);
+        db = mySql.getReadableDatabase();
+
+        Cursor goods = db.query("goods", null, null, null, null, null, null);
+        while (goods.moveToNext()) {
+            String title = goods.getString(goods.getColumnIndex("title"));
+            String imageUrl = goods.getString(goods.getColumnIndex("pic"));
+            float price = goods.getFloat(goods.getColumnIndex("price"));
+            ShoppingCarEntity shoppingCarEntity = new ShoppingCarEntity(title, imageUrl, 1, price);
+            list.add(shoppingCarEntity);
+        }
+
+        myShoppingCarAdapter = new MyShoppingCarAdapter(getContext(), list);
+
+        shoppingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        shoppingRecycler.setAdapter(myShoppingCarAdapter);
+    }
+
     public void toPay(View view){
 
         MySqlTable mySqlTable = new MySqlTable(getContext(),"SqlTable.db",null,1);
@@ -138,15 +150,16 @@ public class ShoppingCarFragment extends MVVMBaseFragment<ShoppingCarViewModel, 
             }
         }
 
-        Intent intent = new Intent(getContext(),PaymentActivity.class);
+        Intent intent = new Intent(getContext(), SubmitOrdersActivity.class);
         startActivity(intent);
+
+        //getActivity().onBackPressed();
 
     }
 
     private void initView() {
         shoppingCheckAll = (CheckBox) findViewById(R.id.shopping_checkAll);
         shoppingSumPrice = (TextView) findViewById(R.id.shopping_sumPrice);
-        shoppingDelete = (TextView) findViewById(R.id.shopping_delete);
         shoppingCommit = (Button) findViewById(R.id.shopping_commit);
         shoppingRecommendRecycler = (RecyclerView) findViewById(R.id.shopping_recommend_recycler);
     }

@@ -15,16 +15,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp">
-        <activity android:name="com.bawei.shoppingcar.view.PaymentActivity"/>
+        <activity android:name="com.bawei.shoppingcar.view.SubmitOrdersActivity"/>
         <activity android:name="com.bawei.classify.view.DetailsPageActivity"/>
-        <activity android:name="com.bawei.HomeActivity">
+        <activity android:name="com.bawei.view.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.bawei.LinkActivity">
+        <activity android:name="com.bawei.view.LinkActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"></action>
                 <category android:name="android.intent.category.BROWSABLE"></category>

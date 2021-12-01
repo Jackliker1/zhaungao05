@@ -15,12 +15,12 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.baseViewHolder> {
+public class MySubmitOrdersAdapter extends RecyclerView.Adapter<MySubmitOrdersAdapter.baseViewHolder> {
 
     private Context mContext;
     private List<PayEntity> payEntities;
 
-    public MyPaymentAdapter(Context mContext, List<PayEntity> payEntities) {
+    public MySubmitOrdersAdapter(Context mContext, List<PayEntity> payEntities) {
         this.mContext = mContext;
         this.payEntities = payEntities;
     }
@@ -28,12 +28,12 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.base
     @NonNull
     @Override
     public baseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View layout = LayoutInflater.from(mContext).inflate(R.layout.item_recycler_payment, null);
+        View layout = LayoutInflater.from(mContext).inflate(R.layout.item_recycler_submitorders, null);
         return new baseViewHolder(layout);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyPaymentAdapter.baseViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MySubmitOrdersAdapter.baseViewHolder holder, int position) {
         Glide.with(mContext).load(payEntities.get(position).getGoodsImgUrl()).into(holder.imageView);
     }
 
@@ -48,7 +48,7 @@ public class MyPaymentAdapter extends RecyclerView.Adapter<MyPaymentAdapter.base
 
         public baseViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.item_recycler_payment_image);
+            imageView = itemView.findViewById(R.id.item_recycler_submitorders_image);
         }
     }
 

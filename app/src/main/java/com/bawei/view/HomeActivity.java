@@ -1,4 +1,4 @@
-package com.bawei;
+package com.bawei.view;
 
 import android.content.Intent;
 import android.os.Bundle;

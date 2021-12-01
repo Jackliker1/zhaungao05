@@ -1,4 +1,4 @@
-package com.bawei;
+package com.bawei.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
