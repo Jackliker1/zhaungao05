@@ -43,7 +43,7 @@ public class ShoppingCarFragment extends MVVMBaseFragment<ShoppingCarViewModel, 
     private int index = 0;
     private SQLiteDatabase db;
     private RecyclerView shoppingRecycler;
-    private List<ShoppingCarEntity> list = new ArrayList<>();
+    private List<ShoppingCarEntity> list;
     private CheckBox shoppingCheckAll;
     private TextView shoppingSumPrice;
     private Button shoppingCommit;
@@ -72,8 +72,6 @@ public class ShoppingCarFragment extends MVVMBaseFragment<ShoppingCarViewModel, 
 
     @Override
     protected void loadData() {
-
-        initView();
 
         shoppingCheckAll.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,18 +106,21 @@ public class ShoppingCarFragment extends MVVMBaseFragment<ShoppingCarViewModel, 
     @Override
     public void onStart() {
         super.onStart();
+        initView();
         shoppingRecycler = (RecyclerView) findViewById(R.id.shopping_recycler);
         setData();
     }
 
     private void setData() {
 
-        if(myShoppingCarAdapter != null){
-            myShoppingCarAdapter.notifyDataSetChanged();
-        }
+        shoppingCommit.setText("去结算(0)");
+        shoppingSumPrice.setText("合计：￥0");
+        shoppingCheckAll.setChecked(false);
 
         MySql mySql = new MySql(getContext(), "ShopCar.db", null, 1);
         db = mySql.getReadableDatabase();
+
+        list = new ArrayList<>();
 
         Cursor goods = db.query("goods", null, null, null, null, null, null);
         while (goods.moveToNext()) {

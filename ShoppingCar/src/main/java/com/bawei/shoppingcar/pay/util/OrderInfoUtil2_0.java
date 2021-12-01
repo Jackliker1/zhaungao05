@@ -1,5 +1,8 @@
 package com.bawei.shoppingcar.pay.util;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -12,7 +15,12 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
+import com.bawei.shoppingcar.R;
+import com.bawei.shoppingcar.database.MySqlTable;
+import com.bawei.shoppingcar.entity.PayEntity;
 import com.bawei.shoppingcar.pay.SignUtils;
+import com.bawei.shoppingcar.view.PaymentActivity;
+import com.bawei.shoppingcar.view.SubmitOrdersActivity;
 
 /**
  * 2.0 订单串本地签名逻辑
@@ -76,7 +84,7 @@ public class OrderInfoUtil2_0 {
 
 		keyValues.put("app_id", app_id);
 
-		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\"0.01\",\"subject\":\"1\",\"body\":\"我是测试数据\",\"out_trade_no\":\"" + getOutTradeNo() +  "\"}");
+		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\""+PaymentActivity.price+"\",\"subject\":\"1\",\"body\":\"我是测试数据\",\"out_trade_no\":\"" + getOutTradeNo() +  "\"}");
 
 		keyValues.put("charset", "utf-8");
 

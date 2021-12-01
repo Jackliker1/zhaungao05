@@ -1,5 +1,6 @@
 package com.bawei.shoppingcar.view;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
@@ -100,8 +101,29 @@ public class SubmitOrdersActivity extends MVVMBaseActivity<BaseViewModel, Activi
             payEntities.remove(i);
         }
 
-        //finish();
+        Intent intent = new Intent(SubmitOrdersActivity.this, PaymentActivity.class);
+        intent.putExtra("sumPrice",sumPrice);
+        startActivity(intent);
+        finish();
 
+    }
+
+    public void toUpdate(View view){
+
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MySql mySql = new MySql(this, "ShopCar.db", null, 1);
+        SQLiteDatabase database = mySql.getReadableDatabase();
+
+        for (int i = 0; i < payEntities.size(); i++) {
+            db.execSQL("delete from orderTable2 where id = " + payEntities.get(i).getId());
+            payEntities.remove(i);
+        }
     }
 
     private void initView() {
