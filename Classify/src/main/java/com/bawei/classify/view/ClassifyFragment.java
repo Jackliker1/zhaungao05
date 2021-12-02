@@ -43,7 +43,7 @@ public class ClassifyFragment extends MVVMBaseFragment<ClassifyViewModel, ViewDa
     private int mColor = Color.parseColor("#EEEEEE");
     private int parentId = 0;
     private RecyclerView classifyRecycler;
-    private List<TypeEntity> types = new ArrayList<>();
+    private List<TypeEntity> types;
     private ClassifyViewModel mViewModel;
     private TextView classifyFirstTv;
     private RecyclerView classifyFirstRecycler;
@@ -66,6 +66,12 @@ public class ClassifyFragment extends MVVMBaseFragment<ClassifyViewModel, ViewDa
 
     private void init(View view) {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
     }
 
     @Override
@@ -98,6 +104,8 @@ public class ClassifyFragment extends MVVMBaseFragment<ClassifyViewModel, ViewDa
     protected void loadData() {
 
         initView();
+
+        types = new ArrayList<>();
 
         mViewModel = new ClassifyViewModel(this);
         mViewModel.getTypeData().observe(this, new Observer<BaseTokenEntity<List<TypeEntity>>>() {

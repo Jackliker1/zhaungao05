@@ -15,6 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp">
+        <activity android:name="com.bawei.shoppingcar.view.AddAddressActivity"/>
+        <activity android:name="com.bawei.shoppingcar.view.UpdateActivity"/>
         <activity android:name="com.bawei.shoppingcar.view.PaymentActivity"/>
         <activity android:name="com.bawei.shoppingcar.view.SubmitOrdersActivity"/>
         <activity android:name="com.bawei.classify.view.DetailsPageActivity"/>

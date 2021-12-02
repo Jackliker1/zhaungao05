@@ -16,8 +16,7 @@ public class MySqlTable extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table orderTable(id integer primary key autoincrement,ordernumber varchar(200),totalvalue float,userid int,createtime datetime,status integer)");
         db.execSQL("create table orderTable2(id integer primary key autoincrement,ordernumber varchar(200),goodsid integer,goodsimgurl varchar(200),goodsprice float,goodscount integer,goodstotalvalue float)");
-        db.execSQL("create table address(id integer primary key autoincrement,name varchar(10),phone varchar(20),province varchar(200),home varchar(200))");
-
+        db.execSQL("create table address(id integer primary key autoincrement,name varchar(10),phone varchar(20),province varchar(200),home varchar(200),place varchar(20),isCheck integer)");
     }
 
     @Override

@@ -71,6 +71,12 @@ public class ShoppingCarFragment extends MVVMBaseFragment<ShoppingCarViewModel, 
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
+    }
+
+    @Override
     protected void loadData() {
 
         shoppingCheckAll.setOnClickListener(new View.OnClickListener() {

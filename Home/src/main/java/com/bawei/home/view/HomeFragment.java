@@ -40,10 +40,9 @@ public class HomeFragment extends MVVMBaseFragment<HomeViewModel, FragmentHomeBi
     private int page = 1;
     private int pageSize = 8;
     private Banner banner;
-    private List<String> ids = new ArrayList<>();
     private HomeViewModel mViewModel;
-    private List<String> imageUrls = new ArrayList<>();
-    private List<RadioButton> radioButtons = new ArrayList<>();
+    private List<String> imageUrls;
+    private List<RadioButton> radioButtons;
     private RadioButton homeBtn01;
     private RadioButton homeBtn02;
     private RadioButton homeBtn03;
@@ -85,6 +84,12 @@ public class HomeFragment extends MVVMBaseFragment<HomeViewModel, FragmentHomeBi
 
     private void init(View view) {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadData();
     }
 
     @Override
@@ -143,6 +148,7 @@ public class HomeFragment extends MVVMBaseFragment<HomeViewModel, FragmentHomeBi
             @Override
             public void onChanged(BaseTokenEntity<List<Goods>> listBaseTokenEntity) {
                 MyAdapter myAdapter = new MyAdapter(listBaseTokenEntity.getData(),getContext());
+                homePageRecycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
                 homePageRecycler.setAdapter(myAdapter);
             }
         });
@@ -150,6 +156,8 @@ public class HomeFragment extends MVVMBaseFragment<HomeViewModel, FragmentHomeBi
     }
 
     public void setBanner() {
+
+        imageUrls = new ArrayList<>();
 
         banner = (Banner) findViewById(R.id.home_Banner);
 
@@ -179,8 +187,8 @@ public class HomeFragment extends MVVMBaseFragment<HomeViewModel, FragmentHomeBi
         homeBtn06 = (RadioButton) findViewById(R.id.home_Btn06);
         homeBtn07 = (RadioButton) findViewById(R.id.home_Btn07);
         homePageRecycler = (RecyclerView) findViewById(R.id.homePage_recycler);
-        homePageRecycler.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
 
+        radioButtons = new ArrayList<>();
         radioButtons.add(homeBtn01);
         radioButtons.add(homeBtn02);
         radioButtons.add(homeBtn03);

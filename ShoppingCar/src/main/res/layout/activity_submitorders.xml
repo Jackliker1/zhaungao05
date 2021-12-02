@@ -67,6 +67,7 @@
                         </TextView>
 
                         <TextView
+                            android:id="@+id/submitorders_place"
                             android:gravity="center"
                             android:textStyle="bold"
                             android:textSize="15sp"
@@ -115,7 +116,7 @@
                         </TextView>
 
                         <ImageView
-                            android:id="@+id/payment_toUpdate"
+                            android:onClick="@{(view)->ownerSubmitOrders.toUpdate(view)}"
                             android:layout_alignParentRight="true"
                             android:paddingRight="10dp"
                             android:paddingLeft="10dp"
@@ -151,6 +152,7 @@
                     </TextView>
 
                     <TextView
+                        android:id="@+id/submit_payMethod"
                         android:layout_marginRight="55dp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
@@ -162,6 +164,7 @@
                     </TextView>
 
                     <ImageView
+                        android:onClick="@{(view)->ownerSubmitOrders.checkPay(view)}"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="15dp"
                         android:layout_alignParentRight="true"

@@ -15,7 +15,7 @@ import com.bawei.classify.view.ClassifyFragment;
 import com.bawei.discover.DiscoverFragment;
 import com.bawei.home.view.HomeFragment;
 import com.bawei.home.view.SearchActivity;
-import com.bawei.mine.MineFragment;
+import com.bawei.mine.view.MineFragment;
 import com.bawei.mvvm.view.BaseActivity;
 import com.bawei.myapp.R;
 import com.bawei.shoppingcar.view.ShoppingCarFragment;

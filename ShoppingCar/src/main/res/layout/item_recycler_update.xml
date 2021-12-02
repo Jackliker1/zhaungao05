@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_height="60dp">
+
+    <RadioButton
+        android:layout_marginTop="15dp"
+        android:checked="true"
+        android:id="@+id/item_update_check"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        android:layout_width="30dp"
+        android:layout_height="30dp">
+    </RadioButton>
+
+    <LinearLayout
+        android:id="@+id/item_update_set"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+
+            <TextView
+                android:id="@+id/item_update_name"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:text="张小白"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+            <TextView
+                android:id="@+id/item_update_phone"
+                android:textSize="15sp"
+                android:layout_marginLeft="15dp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:text="181***0202"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+            <TextView
+                android:id="@+id/item_update_default"
+                android:gravity="center"
+                android:background="#FF0000"
+                android:textSize="15sp"
+                android:layout_marginLeft="15dp"
+                android:textColor="#FFFFFF"
+                android:text="默认"
+                android:layout_width="35dp"
+                android:layout_height="22dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/item_update_place"
+                android:gravity="center"
+                android:background="#0000FF"
+                android:textSize="15sp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#FFFFFF"
+                android:text="家"
+                android:layout_width="35dp"
+                android:layout_height="22dp">
+            </TextView>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp">
+
+            <TextView
+                android:id="@+id/item_update_address"
+                android:textSize="12dp"
+                android:text="默认地址"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+
+            <ImageView
+                android:id="@+id/item_update_update"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/dislike_icon_feedback_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </ImageView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

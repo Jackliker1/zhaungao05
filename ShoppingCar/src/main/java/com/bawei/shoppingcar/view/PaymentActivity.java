@@ -1,7 +1,10 @@
 package com.bawei.shoppingcar.view;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,9 +20,12 @@ import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.bawei.mvvm.view.MVVMBaseActivity;
 import com.bawei.mvvm.viewmodel.BaseViewModel;
+import com.bawei.okhttp.database.MySql;
 import com.bawei.shoppingcar.BR;
 import com.bawei.shoppingcar.R;
+import com.bawei.shoppingcar.database.MySqlTable;
 import com.bawei.shoppingcar.databinding.ActivityPaymentBinding;
+import com.bawei.shoppingcar.entity.PayEntity;
 import com.bawei.shoppingcar.pay.AuthResult;
 import com.bawei.shoppingcar.pay.PayResult;
 import com.bawei.shoppingcar.pay.util.OrderInfoUtil2_0;
@@ -125,6 +131,38 @@ public class PaymentActivity extends MVVMBaseActivity<BaseViewModel, ActivityPay
         return null;
     }
 
+    public void payed(){
+
+        List<PayEntity> payEntities = new ArrayList<>();
+
+        MySqlTable mySqlTable = new MySqlTable(this,"SqlTable.db",null,1);
+        SQLiteDatabase db = mySqlTable.getReadableDatabase();
+
+        Cursor orderTable2 = db.query("orderTable2", null, null, null, null, null, null);
+
+        while (orderTable2.moveToNext()){
+            String goodsImg = orderTable2.getString(orderTable2.getColumnIndex("goodsimgurl"));
+            int goodsCount = orderTable2.getInt(orderTable2.getColumnIndex("goodscount"));
+            float goodsPrice = orderTable2.getFloat(orderTable2.getColumnIndex("goodsprice"));
+            float goodsTotalValue = orderTable2.getFloat(orderTable2.getColumnIndex("goodstotalvalue"));
+            int id = orderTable2.getInt(orderTable2.getColumnIndex("id"));
+            String orderNumber = orderTable2.getString(orderTable2.getColumnIndex("ordernumber"));
+            int goodsId = orderTable2.getInt(orderTable2.getColumnIndex("goodsid"));
+            PayEntity payEntity = new PayEntity(id,orderNumber,goodsId,goodsImg,goodsPrice,goodsCount,goodsTotalValue);
+            payEntities.add(payEntity);
+        }
+
+        MySql mySql = new MySql(this, "ShopCar.db", null, 1);
+        SQLiteDatabase database = mySql.getReadableDatabase();
+
+        for (int i = 0; i < payEntities.size(); i++) {
+            db.execSQL("delete from orderTable2 where id = " + payEntities.get(i).getId());
+            database.delete("goods","pic = ?",new String[]{payEntities.get(i).getGoodsImgUrl()});
+            payEntities.remove(i);
+        }
+
+    }
+
     /**
      * 用于支付宝支付业务的入参 app_id。
      */
@@ -162,6 +200,7 @@ public class PaymentActivity extends MVVMBaseActivity<BaseViewModel, ActivityPay
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                        payed();
                         finish();
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
